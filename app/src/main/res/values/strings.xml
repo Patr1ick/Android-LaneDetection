@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LaneDetection</string>
+    <string name="imageViewDescription">Visualize the adjusted Images</string>
+    <string name="switch_text">Show real image</string>
+    <string name="switch_text_2">Show processed Image</string>
+    <string name="textView1">Settings</string>
+    <string name="about">This is the app for the project "Lane Recognition" from the elective module Digital Image Processing at DHBW Stuttgart</string>
+    <string name="btn_about">About</string>
+</resources>

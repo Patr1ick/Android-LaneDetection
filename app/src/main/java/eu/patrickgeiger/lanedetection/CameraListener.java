@@ -81,13 +81,14 @@ public class CameraListener implements CameraBridgeViewBase.CvCameraViewListener
             return img_filtered;
         }
 
+
         Mat linesP = new Mat();
-        Imgproc.HoughLinesP(img_filtered, linesP, 6, Math.PI / 180, 160, 40, 25);
+        Imgproc.HoughLinesP(img_filtered, linesP, 6, Math.PI / 180, 200, 175, 100);
 
         Mat lines = Mat.zeros(img.size(), img.type());
         for (int x = 0; x < linesP.rows(); x++) {
             double[] l = linesP.get(x, 0);
-            Imgproc.line(lines, new Point(l[0], l[1]), new Point(l[2], l[3]), new Scalar(255, 0, 0), 10, Imgproc.LINE_AA, 0);
+            Imgproc.line(lines, new Point(l[0], l[1]), new Point(l[2], l[3]), new Scalar(255, 0, 0), 5, Imgproc.LINE_AA, 0);
         }
 
         Imgproc.warpPerspective(lines, lines, m, lines.size(), Imgproc.CV_WARP_INVERSE_MAP);
@@ -128,16 +129,18 @@ public class CameraListener implements CameraBridgeViewBase.CvCameraViewListener
         Mat white_line = new Mat();
 
         Core.inRange(img, new Scalar(15, 80, 160), new Scalar(40, 255, 255), yellow_line);
-        Core.inRange(img, new Scalar(0, 0, 225), new Scalar(255, 20, 255), white_line);
+        Core.inRange(img, new Scalar(0, 0, 230), new Scalar(255, 20, 255), white_line);
 
         Mat mask = new Mat();
         Core.bitwise_or(yellow_line, white_line, mask);
 
         Mat img_masked = new Mat();
         Core.bitwise_and(img, img, img_masked, mask);
-        Imgproc.cvtColor(img_masked, img_masked, Imgproc.COLOR_BGR2GRAY);
+        Imgproc.cvtColor(img_masked, img, Imgproc.COLOR_BGR2GRAY);
 
-        Imgproc.morphologyEx(img_masked, img, Imgproc.MORPH_CLOSE, largeKernel);
+        Imgproc.morphologyEx(img, img, Imgproc.MORPH_OPEN, largeKernel);
+
+        Imgproc.threshold(img, img, 50, 255, Imgproc.THRESH_BINARY);
 
         yellow_line.release();
         white_line.release();

@@ -6,7 +6,10 @@
     <color name="secondary_variant">#394766</color>
 
     <color name="dark">#121212</color>
+
+    <color name="bg_light">#F2F2F2</color>
     <color name="light">#E6E6E6</color>
+    <color name="light_darker">#A6A6A6</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

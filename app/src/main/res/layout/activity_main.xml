@@ -15,9 +15,11 @@
         android:layout_below="@+id/cameraView"
         android:padding="5dp"
         android:text="@string/switch_text"
+        android:thumb="@drawable/thumb"
         app:layout_constraintBottom_toTopOf="@+id/switch2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:track="@drawable/track"
         app:useMaterialThemeColors="false" />
 
     <androidx.appcompat.widget.SwitchCompat
@@ -27,9 +29,11 @@
         android:layout_below="@+id/switch1"
         android:padding="5dp"
         android:text="@string/switch_text_2"
+        android:thumb="@drawable/thumb"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:track="@drawable/track"
         app:useMaterialThemeColors="false" />
 
     <org.opencv.android.JavaCameraView

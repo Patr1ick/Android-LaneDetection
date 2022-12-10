@@ -19,6 +19,6 @@
 
     <style name="Widget.App.AboutPage" parent="about_About">
         <item name="aboutBackground">@color/dark</item>
-        <item name="aboutElementIconTint">@color/white</item>
+        <item name="aboutElementIconTint">@color/light_darker</item>
     </style>
 </resources>

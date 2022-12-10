@@ -9,4 +9,4 @@ To detect the lane several steps are taken:
 5. With the help of the Hough Line Transform the lanes are detected. 
 6. The lanes are drawn on a new image and transformed back and combined with the camera image
 ## License
-Licensed under [MIT](LICENSE.md)
+Licensed under [MIT](LICENSE.md).

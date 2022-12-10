@@ -14,11 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="aboutStyle">@style/Widget.App.AboutPage</item>
 
-        <item name="android:colorBackground">@color/light</item>
+        <item name="android:colorBackground">@color/bg_light</item>
     </style>
 
     <style name="Widget.App.AboutPage" parent="about_About">
-        <item name="aboutBackground">@android:color/background_light</item>
-        <item name="aboutElementIconTint">@color/light</item>
+        <item name="aboutBackground">@color/bg_light</item>
+        <item name="aboutElementIconTint">@color/light_darker</item>
     </style>
 </resources>

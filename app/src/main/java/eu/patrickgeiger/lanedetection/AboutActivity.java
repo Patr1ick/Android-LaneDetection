@@ -18,8 +18,8 @@ public class AboutActivity extends AppCompatActivity {
                 .setImage(R.mipmap.ic_launcher)
                 .setDescription(getString(R.string.about))
                 .addGroup("Socials")
-                .addGitHub("https://github.com/Patr1ick/Android-LaneDetection", "GitHub - Android App")
-                .addGitHub("https://github.com/JoDi-2903/Road-Lane-Detection", "GitHub - Python Implementation")
+                .addGitHub("Patr1ick/Android-LaneDetection", "GitHub - Android App")
+                .addGitHub("JoDi-2903/Road-Lane-Detection", "GitHub - Python Implementation")
                 .addGroup("About")
                 .addItem(new Element("Version 1.0", R.drawable.ic_baseline_info_48))
                 .create();

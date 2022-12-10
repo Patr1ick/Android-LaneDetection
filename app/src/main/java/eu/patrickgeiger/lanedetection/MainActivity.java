@@ -6,13 +6,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
-
-import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraActivity;
@@ -29,14 +25,11 @@ public class MainActivity extends CameraActivity {
 
     CameraListener cameraListener;
 
-    public static boolean switch1Value = false;
-    public static boolean switch2Value = false;
-
     BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
             if (status == SUCCESS) {
-                Log.i("OpenCV", "OpenCV loaded successfully");
+                Log.d("OpenCV", "OpenCV loaded successfully");
             } else {
                 super.onManagerConnected(status);
             }
@@ -48,19 +41,18 @@ public class MainActivity extends CameraActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SwitchCompat sw1 = findViewById(R.id.switch1);
-        SwitchCompat sw2 = findViewById(R.id.switch2);
-
-        sw1.setOnCheckedChangeListener((buttonView, isChecked) -> switch1Value = isChecked);
-        sw2.setOnCheckedChangeListener((buttonView, isChecked) -> switch2Value = isChecked);
-
+        // Initialise buttons
         Button btn = findViewById(R.id.button);
         btn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AboutActivity.class)));
 
+        // Get permission to use the camera, if already granted, OpenCV is initialised
         getPermission();
     }
 
 
+    /**
+     * Checks if the permission to use the camera is granted. If already granted, OpenCV is initialised.
+     */
     private void getPermission() {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 101);
@@ -69,12 +61,16 @@ public class MainActivity extends CameraActivity {
         }
     }
 
+    /**
+     * Initialise OpenCV and the camera
+     */
     private void initOpenCV() {
         if (OpenCVLoader.initDebug()) {
             Toast.makeText(this, "OpenCV loaded", Toast.LENGTH_SHORT).show();
 
+            // Initialise the Camera
             cameraBridgeViewBase = findViewById(R.id.cameraView);
-            cameraListener = new CameraListener();
+            cameraListener = new CameraListener(findViewById(R.id.switch1), findViewById(R.id.switch2));
             cameraBridgeViewBase.setCvCameraViewListener(cameraListener);
             cameraBridgeViewBase.enableView();
         }
@@ -83,6 +79,7 @@ public class MainActivity extends CameraActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Check if the permission is granted or denied
         if (grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "You have to give the permission!", Toast.LENGTH_SHORT).show();
             getPermission();

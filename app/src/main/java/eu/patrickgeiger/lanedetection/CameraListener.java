@@ -12,8 +12,8 @@ import org.opencv.imgproc.Imgproc;
 
 public class CameraListener implements CameraBridgeViewBase.CvCameraViewListener2 {
 
-    public SwitchCompat switch1;
-    public SwitchCompat switch2;
+    private SwitchCompat switch1;
+    private SwitchCompat switch2;
 
     private Mat largeKernel;
     private Mat m;
